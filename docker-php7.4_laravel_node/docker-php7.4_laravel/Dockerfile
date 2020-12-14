@@ -58,7 +58,10 @@ RUN docker-php-ext-enable xdebug
 
 # Install composer
 #RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN curl https://getcomposer.org/download/1.7.3/composer.phar --output /usr/local/bin/composer && \
+RUN curl https://getcomposer.org/download/1.7.3/composer.phar --output /usr/local/bin/composer1 && \
+ chmod +x /usr/local/bin/composer1
+
+RUN curl https://getcomposer.org/download/2.0.8/composer.phar --output /usr/local/bin/composer && \
  chmod +x /usr/local/bin/composer
 
 # Add user for laravel application
