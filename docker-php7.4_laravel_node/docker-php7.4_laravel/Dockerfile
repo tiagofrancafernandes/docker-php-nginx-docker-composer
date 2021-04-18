@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     sqlite \
     wget \
     npm \
+    sudo \
     curl 
 
 RUN apt-get update && apt-get install -y \
@@ -56,6 +57,11 @@ RUN pecl install xdebug-2.9.6
 RUN pecl install mongodb-1.5.0
 RUN docker-php-ext-enable xdebug
 
+# Install Redis
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 # Install composer
 #RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN curl https://getcomposer.org/download/1.7.3/composer.phar --output /usr/local/bin/composer1 && \
@@ -67,6 +73,7 @@ RUN curl https://getcomposer.org/download/2.0.8/composer.phar --output /usr/loca
 # Add user for laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN echo "www:www" | chpasswd && adduser www sudo
 
 # Copy existing application directory contents
 COPY . /var/www
