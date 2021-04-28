@@ -26,7 +26,12 @@ RUN apt-get update && apt-get install -y \
     wget \
     npm \
     sudo \
-    curl 
+    curl \
+    postgresql-client-common \
+    postgresql-client \
+    net-tools \
+    iputils-ping \
+    procps
 
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
@@ -74,6 +79,7 @@ RUN curl https://getcomposer.org/download/2.0.8/composer.phar --output /usr/loca
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 RUN echo "www:www" | chpasswd && adduser www sudo
+RUN echo "www ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/www
 
 # Copy existing application directory contents
 COPY . /var/www
