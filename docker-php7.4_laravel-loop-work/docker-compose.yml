@@ -23,6 +23,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
+      - ./docker-php7.4_laravel-loop-work/start.sh:/usr/local/bin/start
       - ./docker-php7.4_laravel-loop-work/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
@@ -42,7 +43,7 @@ services:
 #    working_dir: /var/www
 #    volumes:
 #      - ./:/var/www
-#      - ./docker-php7.4_laravel-loop-work/start.sh
+#      - ./docker-php7.4_laravel-loop-work/start.sh:/usr/local/bin/start
 #      - ./docker-php7.4_laravel-loop-work/php/local.ini:/usr/local/etc/php/conf.d/local.ini
 #    networks:
 #      - app-network
@@ -78,6 +79,7 @@ services:
 #      - "443:443"
     volumes:
       - ./:/var/www
+      - ./docker-php7.4_laravel-loop-work/start.sh:/usr/local/bin/start
       - ./docker-php7.4_laravel-loop-work/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
