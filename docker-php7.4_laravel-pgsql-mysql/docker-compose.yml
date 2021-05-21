@@ -1,0 +1,59 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: $DOCKER_CONFIG_PATH/
+      dockerfile: Dockerfile
+    image: digitalocean.com/php74-mysql
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - $PROJECT_DIR:/var/www
+      - $DOCKER_CONFIG_PATH/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #NGINX Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${HTTP_PORT:-8000}:80"
+    volumes:
+      - "$PROJECT_DIR:/var/www"
+      - "$DOCKER_CONFIG_PATH/nginx/conf.d/:/etc/nginx/conf.d/"
+    networks:
+      - app-network
+
+  #MySQL Service
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-mysql}
+      MYSQL_DATABASE: "mysql"
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    expose:
+      - ${DB_PORT:-3306}
+    volumes:
+      - "$DOCKER_CONFIG_PATH/$MYSQL_DATA_DIR:/var/lib/mysql"
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local
