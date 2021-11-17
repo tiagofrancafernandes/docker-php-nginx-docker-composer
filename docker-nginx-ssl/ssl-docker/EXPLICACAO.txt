@@ -1,0 +1,12 @@
+Baseado na pasta "docker-php7.4_laravel-old-composer"
+Ambiente com PHP7.4 e nginx com ssl
+
+Usando:
+- coloque a pasta inteira dentro da pasta do projeto
+- ajuste o caminho do projeto em relação ao docker-compose (se estiver na raiz nada será necessário)
+- acesse a pasta ssl-docker e inicie o docker compose
+
+Para gerar (atualizar) o certificado:
+ - acese a pasta ./ssl-docker/docker-php7.4_laravel/ssl-certificates/
+ - execute:
+ bash ./generate-auto-signed-certificate.sh

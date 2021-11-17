@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: ./docker-php7.4_laravel/Dockerfile
+    image: tiagofranca.com/php74-old-composer
+    container_name: app-docker-with-ssl
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ../:/var/www
+      - ./docker-php7.4_laravel/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver-docker-with-ssl
+    restart: unless-stopped
+    tty: true
+    ports:
+      #- "8010:80"
+      - "8011:443"
+    volumes:
+      - ../:/var/www
+      - ./docker-php7.4_laravel/ssl-certificates/certificates/:/etc/nginx/certificates/
+      - ./docker-php7.4_laravel/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
