@@ -1,0 +1,11 @@
+lsblk -a
+uname -a
+cat /etc/*release
+sudo apt install hstr
+apt update
+sudo apt update
+sudo apt install hstr
+hstr 
+hstr --show-configuration >> ~/.bashrc && . ~/.bashrc
+source ~/.bashrc 
+cat ~/.bashrc 
