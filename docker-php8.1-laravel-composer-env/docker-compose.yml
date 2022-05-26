@@ -1,0 +1,52 @@
+version: '3'
+services:
+
+  #PHP Service
+  app:
+    # container_name: app
+    build:
+      context: "${DOCKER_CONFIG_PATH:-./docker-data}"
+      dockerfile: Dockerfile
+    image: tiagofranca.com/php8.1-pg
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+      COMPOSER_CACHE_DIR: /home/www/COMPOSER_CACHE_DIR
+    working_dir: /var/www
+    volumes:
+      - "${PROJECT_DIR}:/var/www"
+      - "${DOCKER_CONFIG_PATH:-./docker-data}/php/local.ini:/usr/local/etc/php/conf.d/local.ini"
+      - /tmp:/tmp/tmp_host/
+      ## Executar:
+      ## mkdir -p ./docker-data/profile-files/{psysh,env_COMPOSER_CACHE_DIR} \
+      ## && touch ./docker-data/profile-files/psysh/psysh_history \
+      ## && touch ./docker-data/profile-files/{bash_history.txt,bash_alises.sh}
+      - ./docker-data/profile-files:/home/www/profile-files:rw
+      - ./docker-data/profile-files/psysh:/home/www/.config/psysh:rw
+      - ./docker-data/profile-files/bash_alises.sh:/home/www/.bash_aliases
+      - ./docker-data/profile-files/bash_history.txt:/home/www/.bash_history:rw
+      - ~/.ssh:/home/www/.ssh
+      - ${COMPOSER_CACHE_DIR:-./docker-data/profile-files/env_COMPOSER_CACHE_DIR}:/home/www/COMPOSER_CACHE_DIR
+    networks:
+      - app-network
+
+  #NGINX Service
+  webserver:
+    # container_name: webserver
+    image: nginx:alpine
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${HTTP_PORT:-8000}:80"
+    volumes:
+      - "${PROJECT_DIR}:/var/www"
+      - "${DOCKER_CONFIG_PATH:-./docker-data}/nginx/conf.d/:/etc/nginx/conf.d/"
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
