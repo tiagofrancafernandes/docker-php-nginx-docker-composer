@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+
+  app:
+    # container_name: php-81-fpm-dev
+    # image: php:8.1-fpm
+    build: .
+    image: tiagofranca.com/php-81-fpm-dev
+    tty: true
+    environment:
+      - SERVICE_NAME=app
+      - SERVICE_TAGS=dev
+      - COMPOSER_HOME=/home/www/.composer
+      - MY_ENV="myValue"
+      - ENV_KEY
+    restart: "unless-stopped"
+    ports:
+      - ${HTTP_PORT:-8000}:8000
+      # - ${FPM_PORT:-9000}:9000
+    volumes:
+      - ${APP_PATH:-./}:/var/www/app
+      # https://getcomposer.org/doc/06-config.md#cache-dir
+      - ${COMPOSER_HOME:-~/.composer}:/home/www/.composer
+      - /tmp:/host-tmp
+    deploy:
+        resources:
+            limits:
+                cpus: '0.50'
+                memory: ${PHP_MEMORY_LIMITS_PATH:-512M}
+            reservations:
+                memory: ${PHP_MEMORY_RESERVATIONS_PATH:-512M}
+    command: /bin/bash -c "${APP_RUN_COMMAND:-php -S 0.0.0.0:8000 -t /var/www/app}"
