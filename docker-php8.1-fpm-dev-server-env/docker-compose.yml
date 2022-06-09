@@ -4,9 +4,9 @@ services:
 
   app:
     # container_name: php-81-fpm-dev
-    # image: php:8.1-fpm
-    build: .
-    image: tiagofranca.com/php-81-fpm-dev
+    image: tiagofranca/php-81-fpm-dev:22-06-01
+    # build: .
+    # image: tiagofranca/php-81-fpm-dev
     tty: true
     environment:
       - SERVICE_NAME=app
