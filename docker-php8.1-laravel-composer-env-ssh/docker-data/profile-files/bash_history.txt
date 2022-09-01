@@ -1,0 +1,206 @@
+lsblk -a
+uname -a
+cat /etc/*release
+sudo apt install hstr
+apt update
+sudo apt update
+sudo apt install hstr
+hstr 
+hstr --show-configuration >> ~/.bashrc && . ~/.bashrc
+source ~/.bashrc 
+cat ~/.bashrc 
+ls -l
+ls -l public/
+alias las='ls -lah --color=auto';alias gitstatus='git status';
+las
+composer i
+las ~/COMPOSER_CACHE_DIR
+alias las='ls -lah --color=auto';alias gitstatus='git status';
+las ~/COMPOSER_CACHE_DIR
+composer i
+las ~/COMPOSER_CACHE_DIR
+du -ahd0  ~/COMPOSER_CACHE_DIR
+du -ah  ~/COMPOSER_CACHE_DIR
+las ~
+las ~/.composer/.htaccess 
+las ~/.composer/
+las /tmp/
+las /tmp/tmp_host/
+las
+php artisan key:generate
+php artisan migrate --step
+php artisan migrate --step --seed
+nano .env
+git branch
+git pull origin pre-master
+tinkr
+alias las='ls -lah --color=auto';alias gitstatus='git status';
+alias tinker='php artisan tinker'
+composer i
+nano .env
+composer i
+alias artisan='php artisan'
+artisan key:generate
+artisan migrate --step --seed
+grep -Rn AddCandidatosAcessoradosInUserTable database/
+find database/migrations/
+find database/migrations/|grep add
+alias grep='grep --color=auto'
+find database/migrations/|grep add
+find database/migrations/|grep add|grep cand
+artisan migrate --step --seed
+artisan migrate:fresh --step 
+grep -Rn AddCandidatosAcessoradosInUserTable .
+echo '' > storage/logs/laravel.log 
+grep -Rn AddCandidatosAcessoradosInUserTable .
+nano ./database/migrations/2020_09_17_132234_add_candidatos_acessorados_in_user_table.php
+artisan migrate:fresh --step 
+las database/
+alias las='ls -lah --color=auto';alias gitstatus='git status';
+alias las='ls -lah --color=auto';alias gitstatus='git status';alias grep='grep --color=auto'
+las
+las database/
+las database/migrations/
+rm -rf vendor/
+composer i
+artisan migrate:fresh --step 
+artisan --version
+cd database/migrations/
+grep -R -E '}\n$'
+grep -R -E '}\n$' .
+grep -R -E '}\n' .
+grep -R -E '}\\n' .
+grep -R -E "}\n" .
+grep -R "}" .
+grep -R "}$" .
+grep -R "}\n$" .
+grep -R "}$\n" .
+nano ./2020_08_12_133219_create_contasbancarias_table.php
+grep -R "}\n" .
+grep -R "}\\n" .
+grep -R "\}\n" .
+grep -R "$" .
+grep -R "\n$" .
+grep -R "\\n$" .
+grep -RE "\\n$" .
+grep -RE "\n$" .
+php artisan vendor:publish --provider="Fideloper\Proxy\TrustedProxyServiceProvider"
+php artisan tinker
+tail storage/logs/laravel.log 
+nano .env
+php artisan tinker
+nano app/Http/Middleware/TrustHosts.php 
+rm app/Http/Middleware/TrustHosts.php 
+git c app/Http/Middleware/TrustHosts.php 
+git checkout app/Http/Middleware/TrustHosts.php 
+nano app/Http/Kernel.php 
+nano config/trustedproxy.php 
+php artisan tinker
+nano .env
+nano .env
+nano config/trustedproxy.php 
+alias tinker='php artisan tinker'
+tinker 
+nano config/trustedproxy.php 
+fg
+[Afg
+fg
+tinker 
+nano .env
+nano .env
+nano .env
+nano .env
+nano .env
+alias nano='nano -$ -T 4 -l -y -P -e -A -i'
+nano .env
+nano .env
+nano .env
+nano config/trustedproxy.php 
+export HISTCONTROL=ignoredups:erasedups
+nano config/trustedproxy.php 
+alias las='ls -lah --color=auto';alias gitstatus='git status';alias grep='grep --color=auto'
+alias tinker='php artisan tinker'
+tinker 
+nano .env
+tinker 
+ping br-c1a089e64c18
+ifconfig 
+ifconfig eth0
+ping eth0
+tinker 
+alias tinker='php artisan tinker'
+tinker 
+nano .env
+composer dump
+composer i
+php artisan migrate --step
+git pull origin master
+git log -1
+php artisan migrate --step
+php artisan db:seed
+git pull origin master
+git pull origin master
+git pull origin master
+git pull origin master
+composer dump
+php artisan migrate --step --seed
+git pull origin master
+php artisan migrate --step --seed
+git pull origin master
+php artisan migrate:rollback
+php artisan migrate:rollback
+php artisan migrate:rollback
+php artisan migrate:rollback
+php artisan migrate:rollback
+php artisan migrate:rollback
+php artisan migrate --step --seed
+git pull origin master
+php artisan migrate --step --seed
+php artisan key:generate
+cat .env
+composer i
+php artisan migrate --step --seed
+cat database/seeds/AdminSeeder.php 
+git pull origin master
+git pull origin master
+php artisan migrate:fresh --step --seed
+tail -f storage/logs/laravel.log 
+tail -n 150 -f storage/logs/laravel.log 
+echo '' > storage/logs/laravel.log 
+tail -n 150 -f storage/logs/laravel.log 
+git checkout pre-master
+git pull origin pre-master
+tail -n 150 -f storage/logs/laravel.log 
+git pull origin pre-master
+echo '' > storage/logs/laravel.log 
+tail -n 150 -f storage/logs/laravel.log 
+tail -n 150 -f storage/logs/laravel.log 
+echo '' > storage/logs/laravel.log 
+git pull origin pre-master
+tail -n 150 -f storage/logs/laravel.log 
+git checkout master
+git pull origin master
+php -v
+composer i
+php artisan migrate --step
+tail -n 50 storage/logs/laravel.log 
+composer dump
+php artisan migrate --step
+php artisan db:seed --class=AddUsersSeeder
+git pull origin pre-master
+composer i
+composer i
+artisan db:seed --class=ContractFunctionSeeder
+php artisan db:seed --class=ContractFunctionSeeder
+php artisan tinker
+gits
+composer dump
+composer i
+php artisan tinker
+php artisan tinker
+composer i
+php artisan tinker
+php -i|grep -i post
+php -i|grep -i request
+sudo apt search ssh
+sudo apt search openssh
