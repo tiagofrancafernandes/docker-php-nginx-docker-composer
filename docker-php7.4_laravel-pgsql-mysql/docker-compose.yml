@@ -6,7 +6,7 @@ services:
     build:
       context: $DOCKER_CONFIG_PATH/
       dockerfile: Dockerfile
-    image: digitalocean.com/php74-mysql
+    image: tiagofranca/php74-mysql
     container_name: app
     restart: unless-stopped
     tty: true
@@ -29,8 +29,8 @@ services:
     ports:
       - "${HTTP_PORT:-8000}:80"
     volumes:
-      - "$PROJECT_DIR:/var/www"
-      - "$DOCKER_CONFIG_PATH/nginx/conf.d/:/etc/nginx/conf.d/"
+      - "${PROJECT_DIR}:/var/www"
+      - "${DOCKER_CONFIG_PATH}/nginx/conf.d/:/etc/nginx/conf.d/"
     networks:
       - app-network
 
@@ -45,7 +45,7 @@ services:
     expose:
       - ${DB_PORT:-3306}
     volumes:
-      - "$DOCKER_CONFIG_PATH/$MYSQL_DATA_DIR:/var/lib/mysql"
+      - "${DOCKER_CONFIG_PATH}/mysql_data:/var/lib/mysql"
     networks:
       - app-network
 

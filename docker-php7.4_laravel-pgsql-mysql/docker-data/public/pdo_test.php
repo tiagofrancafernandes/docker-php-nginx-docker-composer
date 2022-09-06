@@ -1,7 +1,7 @@
 <?php
 $type = 'mysql'; //mysql/postgres
 
-$pdo_config = [
+$pdoConfig = [
     'pgsql' => [
         'driver'   => 'pgsql',
         'host'     => '127.0.0.1',
@@ -22,16 +22,16 @@ $pdo_config = [
     ],
 ];
 
-$driver   = $pdo_config[$type]['driver']    ?? '';
-$host     = $pdo_config[$type]['host']      ?? '';
-$port     = $pdo_config[$type]['port']      ?? '';
-$database = $pdo_config[$type]['database']  ?? '';
-$user     = $pdo_config[$type]['user']      ?? '';
-$password = $pdo_config[$type]['password']  ?? '';
-$more     = $pdo_config[$type]['more']      ?? '';
+$driver   = $pdoConfig[$type]['driver']    ?? '';
+$host     = $pdoConfig[$type]['host']      ?? '';
+$port     = $pdoConfig[$type]['port']      ?? '';
+$database = $pdoConfig[$type]['database']  ?? '';
+$user     = $pdoConfig[$type]['user']      ?? '';
+$password = $pdoConfig[$type]['password']  ?? '';
+$more     = (string)$pdoConfig[$type]['more']      ?? '';
 
 try {
-    $dsn = "$driver:host=$host;port=$port;dbname=$database;$more";
+    $dsn = "{$driver}:host={$host};port={$port};dbname={$database};{$more}";
 
     // make a database connection
     $pdo = new PDO(
@@ -42,9 +42,7 @@ try {
     );
 
     if ($pdo)
-        echo "<pre>\nConnected to the $database database successfully!</pre>";
-
-} catch (PDOException $e)
-{
+        echo "<pre>\nConnected to the ${database} database successfully!</pre>";
+} catch (PDOException $e) {
     die($e->getMessage());
 }
